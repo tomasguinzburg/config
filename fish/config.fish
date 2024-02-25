@@ -26,4 +26,8 @@ set -Ux RUSTC_WRAPPER sscache
 fish_add_path -p /Users/tomasguinzburg/.cargo/bin
 
 # Init mise (asdf clone)
-~/.cargo/bin/mise activate fish | source
+if status is-interactive
+  mise activate fish | source
+else
+  mise activate fish --shims | source
+end

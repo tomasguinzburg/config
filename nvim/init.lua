@@ -693,6 +693,7 @@ cmp.setup {
 }
 
 vim.opt.colorcolumn = "80"
-
+-- Prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
