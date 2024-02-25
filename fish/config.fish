@@ -18,7 +18,16 @@ if status is-interactive
     abbr -a tree 'ls -T --group-directories-first'
     abbr -a wrk 'cd ~/workspace/'
     alias vim nvim
+
+    #Zellij autostart, but with compact mode
+    #eval (zellij setup --generate-auto-start fish | string collect)
+    if set -q ZELLIJ
+    else
+      zellij --layout compact
+    end
 end
+
+set fish_greeting
 
 # Use sccache to speed up rust compilation
 set -Ux RUSTC_WRAPPER sscache
