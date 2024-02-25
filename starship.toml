@@ -40,7 +40,7 @@ color_green  = '#31353f'
 color_orange = '#181a1f'
 color_purple = '#c678dd'
 color_red    = '#e86671'
-color_yellow = '#282c34'
+color_yellow = '#31353f'
 color_black  = '#181a1f'
 
 [os]
