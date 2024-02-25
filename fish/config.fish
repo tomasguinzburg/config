@@ -16,6 +16,7 @@ if status is-interactive
     alias ls exa
     abbr -a ll 'ls --icons -F -H --group-directories-first --git -1 -a'
     abbr -a tree 'ls -T --group-directories-first'
+    abbr -a wrk 'cd ~/workspace/'
     alias vim nvim
 end
 
@@ -23,3 +24,6 @@ end
 set -Ux RUSTC_WRAPPER sscache
 # Add cargo binaries to path
 fish_add_path -p /Users/tomasguinzburg/.cargo/bin
+
+# Init mise (asdf clone)
+~/.cargo/bin/mise activate fish | source
