@@ -1,31 +1,25 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # Set editor to NVim
     set -Ux EDITOR nvim
-    set -Ux RUSTC_WRAPPER sscache
 
-    fish_add_path -p /Users/tomasguinzburg/.cargo/bin
-    starship init fish | source
+    # Replace cd with zoxide for easier navigation
     zoxide init --cmd cd fish | source
 
-    alias ls exa
-    alias ll 'exa --icons -F -H --group-directories-first --git -1 -a'
-    alias vim nvim
-
+    # Prompt customization
     function starship_transient_prompt_func
         starship module character
     end
 
     starship init fish | source
     enable_transience
+
+    alias ls exa
+    abbr -a ll 'ls --icons -F -H --group-directories-first --git -1 -a'
+    abbr -a tree 'ls -T --group-directories-first'
+    alias vim nvim
 end
 
-alias vim nvim
-
-set -Ux EDITOR nvim
-
-set -Ux RUSTC_WRAPPER sccache
-
+# Use sccache to speed up rust compilation
+set -Ux RUSTC_WRAPPER sscache
+# Add cargo binaries to path
 fish_add_path -p /Users/tomasguinzburg/.cargo/bin
-
-#zoxide
-zoxide init --cmd cd fish | source
