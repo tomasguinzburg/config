@@ -266,25 +266,26 @@ plugins {
          black 0 0 0
          white 255 255 255
      }
-     gruvbox-dark {
-         fg "#D5C4A1"
-    	 bg "#282828"
-	 black "#3C3836"
-	 red "#CC241D"
-	 green "#98971A"
-	 yellow "#D79921"
-	 blue "#3C8588"
-	 magenta "#B16286"
-	 cyan "#689D6A"
-	 white "#FBF1C7"
-	 orange "#D65D0E"
+     one-dark {
+         fg "#ABB2BF"
+    	 bg "#282C34"
+	 black "#181A1F"
+	 red "#E86671"
+	 magenta "#98C379"
+	 yellow "#E5C07B"
+	 blue "#61AFEF"
+	 green "#C678DD"
+	 cyan "#56B6C2"
+	 white "#ABB2BF"
+	 orange "#D19A66"
     }
+
  }
 
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
- theme "gruvbox-dark"
+ theme "one-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
