@@ -1,6 +1,6 @@
 if status is-interactive
 
-    cd ~/Workspace/
+    cd ~/workspace/
     # Set editor to NVim
     set -Ux EDITOR nvim
 
@@ -45,7 +45,8 @@ set fish_greeting
 set DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 
 # Use sccache to speed up rust compilation
-set -Ux RUSTC_WRAPPER sscache
+set -Ux RUSTC_WRAPPER sccache
+fish_add_path -p /usr/local/bin
 # Add cargo binaries to path
 fish_add_path -p /Users/tomasguinzburg/.cargo/bin
 fish_add_path /opt/homebrew/bin

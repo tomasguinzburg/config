@@ -1,0 +1,19 @@
+import = [
+"~/.config/alacritty/onedark.toml"
+]
+
+shell="/usr/local/bin/fish"
+
+
+[window]
+startup_mode = "Fullscreen"
+decorations_theme_variant = "Dark"
+option_as_alt = "OnlyLeft"
+
+[scrolling]
+history = 20000
+
+[font]
+normal = { family = "Hasklug Nerd Font", style = "Regular" }
+size = 18
+
