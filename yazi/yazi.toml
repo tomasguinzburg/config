@@ -1,0 +1,218 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+linemode       = "none"
+ratio          = [1, 2, 5]
+scrolloff      = 10
+show_hidden    = false
+show_symlink   = true
+sort_by        = "natural"
+sort_dir_first = true
+sort_reverse   = false
+sort_sensitive = false
+
+[preview]
+cache_dir      = ""
+image_filter   = "lanczos3"
+image_quality  = 75
+max_height     = 90
+max_width      = 60
+sixel_fraction = 15
+tab_size       = 60
+
+[opener]
+edit    = [{ exec = 'zellij run -- nvim "$@"', desc = "Open new pane" }]
+extract = [{ exec = 'unar "$1"', desc = "Extract here" }]
+open    = [{ exec = 'open "$@"', desc = "Open" }]
+play    = [{ exec = 'mpv "$@"', orphan = true, for = "unix" }]
+reveal  = [{ exec = 'open -R "$1"', desc = "Reveal" }]
+
+[open]
+rules = [
+	{ name = "*/", use = [
+		"edit",
+		"open",
+		"reveal",
+	] },
+
+	{ mime = "audio/*", use = [
+		"play",
+		"reveal",
+	] },
+	{ mime = "image/*", use = [
+		"open",
+		"reveal",
+	] },
+	{ mime = "inode/x-empty", use = [
+		"edit",
+		"reveal",
+	] },
+	{ mime = "text/*", use = [
+		"edit",
+		"reveal",
+	] },
+	{ mime = "video/*", use = [
+		"play",
+		"reveal",
+	] },
+
+	{ mime = "*/javascript", use = [
+		"edit",
+		"reveal",
+	] },
+	{ mime = "application/json", use = [
+		"edit",
+		"reveal",
+	] },
+
+	{ mime = "application/gzip", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/x-7z-compressed", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/x-bzip", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/x-bzip2", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/x-rar", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/x-tar", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/xz", use = [
+		"extract",
+		"reveal",
+	] },
+	{ mime = "application/zip", use = [
+		"extract",
+		"reveal",
+	] },
+
+	{ mime = "*", use = [
+		"open",
+		"reveal",
+	] },
+]
+
+[tasks]
+bizarre_retry    = 5
+image_alloc      = 536870912 # 512MB
+image_bound      = [0, 0]
+macro_workers    = 25
+micro_workers    = 10
+suppress_preload = false
+
+[plugin]
+
+preloaders = [
+	{ name = "*", cond = "!mime", exec = "mime", multi = true, prio = "high" },
+	# Image
+	{ mime = "image/*", exec = "image" },
+	{ mime = "image/vnd.djvu", exec = "noop" },
+	# Video
+	{ mime = "video/*", exec = "video" },
+	# PDF
+	{ mime = "application/pdf", exec = "pdf" },
+]
+previewers = [
+	{ name = "*/", exec = "folder", sync = true },
+	# Code
+	{ mime = "*/javascript", exec = "code" },
+	{ mime = "*/x-wine-extension-ini", exec = "code" },
+	{ mime = "*/xml", exec = "code" },
+	{ mime = "text/*", exec = "code" },
+	# JSON
+	{ mime = "application/json", exec = "json" },
+	# Image
+	{ mime = "image/*", exec = "image" },
+	{ mime = "image/vnd.djvu", exec = "noop" },
+	# Video
+	{ mime = "video/*", exec = "video" },
+	# PDF
+	{ mime = "application/pdf", exec = "pdf" },
+	# Archive
+	{ mime = "application/gzip", exec = "archive" },
+	{ mime = "application/x-7z-compressed", exec = "archive" },
+	{ mime = "application/x-bzip", exec = "archive" },
+	{ mime = "application/x-bzip2", exec = "archive" },
+	{ mime = "application/x-rar", exec = "archive" },
+	{ mime = "application/x-tar", exec = "archive" },
+	{ mime = "application/xz", exec = "archive" },
+	{ mime = "application/zip", exec = "archive" },
+	# Fallback
+	{ name = "*", exec = "file" },
+]
+
+[input]
+# cd
+cd_offset = [0, 2, 3, 50]
+cd_origin = "top-center"
+cd_title  = "Change directory:"
+
+# create
+create_offset = [0, 2, 3, 50]
+create_origin = "top-center"
+create_title  = "Create:"
+
+# rename
+rename_offset = [0, 1, 3, 50]
+rename_origin = "hovered"
+rename_title  = "Rename:"
+
+# trash
+trash_offset = [0, 2, 3, 50]
+trash_origin = "top-center"
+trash_title  = "Move {n} selected file{s} to trash? (y/N)"
+
+# delete
+delete_offset = [0, 2, 3, 50]
+delete_origin = "top-center"
+delete_title  = "Delete {n} selected file{s} permanently? (y/N)"
+
+# filter
+filter_offset = [0, 2, 3, 50]
+filter_origin = "top-center"
+filter_title  = "Filter:"
+
+# find
+find_offset = [0, 2, 3, 50]
+find_origin = "top-center"
+find_title  = ["Find next:", "Find previous:"]
+
+# search
+search_offset = [0, 2, 3, 50]
+search_origin = "top-center"
+search_title  = "Search via {n}:"
+
+# shell
+shell_offset = [0, 2, 3, 50]
+shell_origin = "top-center"
+shell_title  = ["Shell (block):", "Shell:"]
+
+# overwrite
+overwrite_offset = [0, 2, 3, 50]
+overwrite_origin = "top-center"
+overwrite_title  = "Overwrite an existing file? (y/N)"
+
+# quit
+quit_offset = [0, 2, 3, 50]
+quit_origin = "top-center"
+quit_title  = "{n} task{s} running, sure to quit? (y/N)"
+
+[select]
+open_offset = [0, 1, 50, 7]
+open_origin = "hovered"
+open_title  = "Open with:"
+
+[log]
+enabled = false

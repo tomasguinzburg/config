@@ -1,5 +1,4 @@
 local c = require('onedark.colors')
-local cfg = vim.g.onedark_config
 
 local colors = {
   bg     = c.bg1,
