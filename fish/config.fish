@@ -30,8 +30,11 @@ if status is-interactive
     abbr -a wrk 'cd ~/workspace/'
     abbr -a amz 'cd ~/Workspace/amenitiz'
     abbr -a amz-run 'bundle install && rake db:migrate && yarn install --force && bin/dev'
+    abbr -a amz-test 'RAILS_ENV=test rake db:migrate'
     alias amz-config 'op item get tguinzburg --totp | pbcopy; and aws-vault exec a6z-development -- make config/application.yml'
+    alias pbclear 'pbcopy < /dev/null'
     alias vim nvim
+    alias stripe-debug 'op item get stripe-read-only-billing --fields password | pbcopy'
 
     #Zellij autostart, but with compact mode
     #eval (zellij setup --generate-auto-start fish | string collect)

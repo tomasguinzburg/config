@@ -43,7 +43,6 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -276,6 +275,9 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+    -- {
+  --   'github/copilot.vim',
+  -- },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -643,10 +645,11 @@ mason_lspconfig.setup_handlers {
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
+local lspkind = require 'lspkind'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
-
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg="#6CC644"})
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -662,7 +665,7 @@ cmp.setup {
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<Right>'] = cmp.mapping.confirm {
+    ['<C-Right>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
@@ -686,13 +689,24 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
+    { name = 'nvim_lsp', group_index = 2 },
+    { name = 'luasnip',  group_index = 2 },
+    { name = 'path',     group_index = 2 },
+    { name = 'copilot',  group_index = 2 },
+  },
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol',
+      maxwidth = 50,
+      ellipsis_char = "...",
+      show_labelDetails = true,
+      symbol_map = { Copilot = ' ' },
+      -- before
+    })
   },
 }
 
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "80"
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 -- The line beneath this is called `modeline`. See `:help modeline`
