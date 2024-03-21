@@ -53,11 +53,11 @@ return {
 
       -- Override the git prompts message
       opts.prompts.Commit = {
-        prompt = "Write commit message for the change with commitizen convention",
+        prompt = "Write commit message for the change with this repository convention",
         selection = select.gitdiff,
       }
       opts.prompts.CommitStaged = {
-        prompt = "Write commit message for the change with commitizen convention",
+        prompt = "Write commit message for the change with this repository convention",
         selection = function(source)
           return select.gitdiff(source, true)
         end,
