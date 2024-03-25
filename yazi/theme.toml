@@ -38,7 +38,7 @@ syntect_theme = "~/.config/yazi/rose-pine.tmTheme"
 [status]
 separator_open = ""
 separator_close = ""
-separator_style = { fg = "#2A273F", bg = "#2A273F" }
+separator_style = { fg = "#2a273f", bg = "#2a273f" }
 
 # Mode
 mode_normal = { fg = "#181a1f", bg = "#c678dd", bold = false }
