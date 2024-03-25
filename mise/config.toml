@@ -1,3 +1,6 @@
 [tools]
 node = "18"
 go = "1"
+
+[settings]
+experimental = true
