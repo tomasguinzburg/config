@@ -1,6 +1,6 @@
 if status is-interactive
 
-    cd ~/workspace/
+    # cd ~/workspace/
     # Set editor to NVim
     set -Ux EDITOR nvim
 

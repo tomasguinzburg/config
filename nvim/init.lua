@@ -713,10 +713,49 @@ cmp.setup {
       -- before
     })
   },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require("copilot_cmp.comparators").prioritize,
+
+      -- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
 }
 
 vim.opt.colorcolumn = "80"
+vim.g.tabstop = 2
+vim.g.expandtab = true
+vim.g.shiftwidth = 2
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
+local open_command = 'xdg-open'
+if vim.fn.has('mac') == 1 then
+  open_command = 'open'
+end
+
+local function url_repo()
+  local cursorword = vim.fn.expand('<cfile>')
+  if string.find(cursorword, '^[a-zA-Z0-9-_.]*/[a-zA-Z0-9-_.]*$') then
+    cursorword = 'https://github.com/' .. cursorword
+  end
+  return cursorword or ''
+end
+
+vim.keymap.set('n', 'gx', function()
+  vim.fn.jobstart({ open_command, url_repo() }, { detach = true })
+end, { silent = true })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
