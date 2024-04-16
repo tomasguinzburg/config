@@ -31,6 +31,7 @@ if status is-interactive
     abbr -a amz 'cd ~/Workspace/amenitiz'
     abbr -a amz-run 'bundle install && rake db:migrate && yarn install --force && bin/dev'
     abbr -a amz-test 'RAILS_ENV=test rake db:migrate'
+    alias awsotp 'op item get tguinzburg --totp'
     alias amz-config 'op item get tguinzburg --totp | pbcopy; and aws-vault exec a6z-development -- make config/application.yml'
     alias pbclear 'pbcopy < /dev/null'
     alias vim nvim
