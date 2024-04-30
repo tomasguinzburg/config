@@ -734,9 +734,6 @@ cmp.setup {
 }
 
 vim.opt.colorcolumn = "80"
-vim.g.tabstop = 2
-vim.g.expandtab = true
-vim.g.shiftwidth = 2
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
