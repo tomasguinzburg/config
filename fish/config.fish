@@ -11,6 +11,14 @@ if status is-interactive
     function starship_transient_prompt_func
         starship module character
     end
+
+    function starship_transient_rprompt_func
+      starship module time
+    end
+
+    starship init fish | source
+    enable_transience
+ 
     # Yazi shell wrapper
     function ya
       set tmp (mktemp -t "yazi-cwd.XXXXX")
@@ -21,8 +29,10 @@ if status is-interactive
       rm -f -- "$tmp"
     end
 
-    starship init fish | source
-    enable_transience
+    #Lower env logs
+    function amz-staging-logs
+      aws-vault exec a6z-development -- aws ecs execute-command --task $(aws-vault exec a6z-development -- aws ecs list-tasks --cluster awsinfra-staging-3 --region eu-west-3 --service-name awsinfra-staging-3-web | jq -r '.taskArns[0]' | awk -F'/' '{print $NF}') --region eu-west-3 --cluster awsinfra-staging-3 --container awsinfra-staging-3-web --interactive --command 'sops exec-env /app/.environments/staging-amenitiz-3.enc.env "bundle exec rails console"'
+    end
 
     alias ls exa
     abbr -a ll 'ls --icons -F -H --group-directories-first --git -1 -a'

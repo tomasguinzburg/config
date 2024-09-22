@@ -201,20 +201,6 @@ require('lazy').setup({
       end,
     },
   },
-
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require('onedark').setup {
-        -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
-      }
-      require('onedark').load()
-    end,
-  },
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1001,
@@ -315,6 +301,11 @@ vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
+
+-- Dark mode
+vim.o.background = 'dark'
+-- Gruvbox
+vim.cmd([[colorscheme gruvbox]])
 
 -- Save undo history
 vim.o.undofile = true
