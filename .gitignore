@@ -12,3 +12,4 @@ octave/
 omf/
 yarn/
 github-copilot/
+*.gpg
