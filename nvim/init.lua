@@ -305,7 +305,7 @@ vim.o.breakindent = true
 -- Dark mode
 vim.o.background = 'dark'
 -- Gruvbox
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme catppuccin-macchiato]])
 
 -- Save undo history
 vim.o.undofile = true

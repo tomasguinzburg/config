@@ -8,9 +8,9 @@ if status is-interactive
     zoxide init --cmd cd fish | source
 
     # Prompt customization
-    function starship_transient_prompt_func
-        starship module character
-    end
+    # function starship_transient_prompt_func
+    #     starship module character
+    # end
 
     function starship_transient_rprompt_func
       starship module time
