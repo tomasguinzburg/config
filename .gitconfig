@@ -1,0 +1,26 @@
+[user]
+    name = Tomás Guinzburg
+    email = tomasguinzburg@gmail.com
+[init]
+    defaultBranch = main
+[rerere]
+    enabled = true
+[maintenance]
+    repo = /Users/tomasguinzburg/.config
+[rebase]
+    updateRefs = true
+[merge]
+    conflictstyle = diff3
+[core]
+    pager = delta
+    editor = nvim
+[diff]
+    colorMoved = default
+[interactive]
+    diffFilter = delta --color-only
+[include]
+    path = ~/.config/delta/themes.gitconfig
+[delta]
+    navigate = true
+    features = catppuccin-macchiato side-by-side
+    dark = false

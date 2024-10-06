@@ -7,10 +7,17 @@ if status is-interactive
     # Replace cd with zoxide for easier navigation
     zoxide init --cmd cd fish | source
 
-    # Prompt customization
+    # Set up fzf key bindings
+    # fzf --fish | source # Incompatible with fzf.fish
+    fzf_configure_bindings --directory=\ct --git_log=\ch --git_status=\e\ch --processes=\cp --history=\cr
+
+    # Transient prompt customization (I just use default)
     # function starship_transient_prompt_func
     #     starship module character
     # end
+
+    # Use bat as man pager
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
     function starship_transient_rprompt_func
       starship module time
@@ -34,7 +41,7 @@ if status is-interactive
       aws-vault exec a6z-development -- aws ecs execute-command --task $(aws-vault exec a6z-development -- aws ecs list-tasks --cluster awsinfra-staging-3 --region eu-west-3 --service-name awsinfra-staging-3-web | jq -r '.taskArns[0]' | awk -F'/' '{print $NF}') --region eu-west-3 --cluster awsinfra-staging-3 --container awsinfra-staging-3-web --interactive --command 'sops exec-env /app/.environments/staging-amenitiz-3.enc.env "bundle exec rails console"'
     end
 
-    alias ls exa
+    alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
     abbr -a ll 'ls --icons -F -H --group-directories-first --git -1 -a'
     abbr -a tree 'ls -T --group-directories-first'
     abbr -a wrk 'cd ~/workspace/'
@@ -48,15 +55,16 @@ if status is-interactive
     alias vim nvim
     alias stripe-debug 'op item get stripe-read-only-billing --fields password | pbcopy'
 
-    #Zellij autostart, but with compact mode
-    #eval (zellij setup --generate-auto-start fish | string collect)
-    # if set -q ZELLIJ
-    # else
-    #   zellij
-    # end
+    mise activate fish | source
+    if not set -q ZELLIJ
+      zellij attach default
+    end
+else
+  mise activate fish --shims | source
 end
 
 set fish_greeting
+set XDG_HOME $HOME/.config
 set DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 
 # Use sccache to speed up rust compilation
@@ -65,13 +73,6 @@ fish_add_path -p /usr/local/bin
 # Add cargo binaries to path
 fish_add_path -p /Users/tomasguinzburg/.cargo/bin
 fish_add_path /opt/homebrew/bin
-
-# Init mise (asdf clone)
-if status is-interactive
-  mise activate fish | source
-else
-  mise activate fish --shims | source
-end
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/tomasguinzburg/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/tomasguinzburg/Downloads/google-cloud-sdk/path.fish.inc'; end
