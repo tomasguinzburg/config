@@ -41,10 +41,11 @@ if status is-interactive
       aws-vault exec a6z-development -- aws ecs execute-command --task $(aws-vault exec a6z-development -- aws ecs list-tasks --cluster awsinfra-staging-3 --region eu-west-3 --service-name awsinfra-staging-3-web | jq -r '.taskArns[0]' | awk -F'/' '{print $NF}') --region eu-west-3 --cluster awsinfra-staging-3 --container awsinfra-staging-3-web --interactive --command 'sops exec-env /app/.environments/staging-amenitiz-3.enc.env "bundle exec rails console"'
     end
 
-    alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+    alias ls="eza -a --color=always --long --git"
     abbr -a ll 'ls --icons -F -H --group-directories-first --git -1 -a'
     abbr -a tree 'ls -T --group-directories-first'
     abbr -a wrk 'cd ~/workspace/'
+    abbr -a conf 'cd ~/.config'
     abbr -a amz 'cd ~/Workspace/amenitiz'
     abbr -a amz-run 'bundle install && rake db:migrate && yarn install --force && bin/dev'
     abbr -a amz-test-migrate 'RAILS_ENV=test rake db:migrate'
@@ -57,7 +58,7 @@ if status is-interactive
 
     mise activate fish | source
     if not set -q ZELLIJ
-      zellij attach default
+      zellij attach default -c
     end
 else
   mise activate fish --shims | source
@@ -65,6 +66,7 @@ end
 
 set fish_greeting
 set XDG_HOME $HOME/.config
+set ZELLIJ_CONFIG_DIR $XDG_HOME/zellij
 set DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 
 # Use sccache to speed up rust compilation
