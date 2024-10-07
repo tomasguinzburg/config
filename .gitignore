@@ -16,3 +16,4 @@ github-copilot/
 spotify-tui/
 *.log
 tmux/plugins/
+nvim/lazy-lock.json

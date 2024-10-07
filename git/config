@@ -1,16 +1,23 @@
 [user]
-    name = Tomás Guinzburg
-    email = tomasguinzburg@gmail.com
+    signingkey = 950E3D9E18415C79
+    email = tomas@amenitiz.com
+    name = tomasguinzburg
 [init]
     defaultBranch = main
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
 [rerere]
     enabled = true
 [maintenance]
     repo = /Users/tomasguinzburg/.config
+    repo = /Users/tomasguinzburg/Workspace/amenitiz
 [rebase]
     updateRefs = true
 [merge]
     conflictstyle = diff3
+    tool = nvimdiff
 [core]
     pager = delta
     editor = nvim
@@ -24,3 +31,6 @@
     navigate = true
     features = catppuccin-macchiato side-by-side
     dark = false
+[core]
+    excludesfile = /Users/tomasguinzburg/.config/git/ignore
+    excludesfile = /Users/tomasguinzburg/.config/git/config
