@@ -1,0 +1,6 @@
+.DS_Store
+.mise*
+.taplo*
+*.orig
+*.code-workspace
+

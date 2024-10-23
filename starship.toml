@@ -34,12 +34,12 @@ command_timeout = 1000
 [character]
 # Note the use of Catppuccin color 'peach'
 format = "[$symbol ]($style bold)"
-success_symbol = "[[󰄛](fg:green bg:overlay0)[](fg:overlay0)  ](fg:rosewater)"
-error_symbol = "[[󰄛](fg:red bg:overlay0)[](fg:overlay0)  ](fg:rosewater)"
-vimcmd_symbol = "[[󰄛](fg:mauve bg:overlay0)[](fg:overlay0)  ](fg:rosewater)" # For use with zsh-vi-mode
-vimcmd_replace_one_symbol = '[[󰄛](fg:mauve bg:overlay0)[](fg:overlay0)  ](fg:mauve)'
-vimcmd_replace_symbol = '[[󰄛](fg:mauve bg:overlay0)[](fg:overlay0)  ](fg:mauve)'
-vimcmd_visual_symbol = '[[󰄛](fg:yellow bg:overlay0)[](fg:overlay0)  ](fg:yellow)'
+success_symbol = "[[ 󰄛](fg:green bg:overlay0)[](fg:overlay0)  ](fg:rosewater)"
+error_symbol = "[[ 󰄛](fg:red bg:overlay0)[](fg:overlay0)  ](fg:rosewater)"
+vimcmd_symbol = "[[ 󰄛](fg:mauve bg:overlay0)[](fg:overlay0)  ](fg:rosewater)" # For use with zsh-vi-mode
+vimcmd_replace_one_symbol = '[[ 󰄛](fg:mauve bg:overlay0)[](fg:overlay0)  ](fg:mauve)'
+vimcmd_replace_symbol = '[[ 󰄛](fg:mauve bg:overlay0)[](fg:overlay0)  ](fg:mauve)'
+vimcmd_visual_symbol = '[[ 󰄛](fg:yellow bg:overlay0)[](fg:overlay0)  ](fg:yellow)'
 
 [directory]
 style = "fg:red bg:base"
@@ -73,6 +73,7 @@ format = '[[ $symbol ($version) ](fg:peach bg:surface1)]($style)'
 symbol = " "
 style = "fg:yellow bg:surface2"
 format = '[[ $symbol $context ](fg:yellow bg:surface2)]($style)$path'
+only_with_files = false
 
 [elixir]
 symbol = " "
@@ -87,7 +88,7 @@ format = '[[ $symbol ($version) ](fg:peach bg:surface1)]($style)'
 [golang]
 symbol = " "
 style = "fg:peach bg:##cba6f7"
-format = '[[ $symbol](fg:peach bg:surface1)]($style)'
+format = '[[ $symbol ($version) ](fg:peach bg:surface1)]($style)'
 
 [haskell]
 symbol = " "

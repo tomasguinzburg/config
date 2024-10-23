@@ -68,6 +68,7 @@ set fish_greeting
 set XDG_HOME $HOME/.config
 set ZELLIJ_CONFIG_DIR $XDG_HOME/zellij
 set DOCKER_HOST unix://$HOME/.colima/default/docker.sock
+set DOCKER_CONTEXT colima
 
 # Use sccache to speed up rust compilation
 set -Ux RUSTC_WRAPPER sccache

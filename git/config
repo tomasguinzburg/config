@@ -31,6 +31,3 @@
     navigate = true
     features = catppuccin-macchiato side-by-side
     dark = false
-[core]
-    excludesfile = /Users/tomasguinzburg/.config/git/ignore
-    excludesfile = /Users/tomasguinzburg/.config/git/config
